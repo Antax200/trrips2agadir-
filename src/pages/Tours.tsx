@@ -69,8 +69,8 @@ const Tours: React.FC = () => {
       <div className="relative h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
-            src="Public/cover services-02.jpg" 
-            alt="Quad biking tours" 
+            src="https://i.ibb.co/M5MQB64K/cover-services-02.jpg" 
+            alt="Tours Cover" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-amber-600/50"></div>

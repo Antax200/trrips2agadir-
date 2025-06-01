@@ -60,7 +60,7 @@ const Header: React.FC = () => {
       <Container>
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <img src=".bolt/Public/logo.png" alt="Trips 2 Agadir Logo" className="h-16 w-auto" />
+            <img src="https://i.ibb.co/20RyR4cD/logo.png" alt="Trips 2 Agadir Logo" className="h-16 w-auto" />
             <span className={`${logoClasses} ml-2`}>Trips 2 Agadir</span>
           </Link>
 

@@ -24,10 +24,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
     lastName: '',
     email: '',
     phone: '',
-    specialRequests: ''
+    specialRequests: '',
+    tourName: tour.title,
+    totalPrice: tour.price * ((prefill?.adults ?? 1) + (prefill?.children ?? 0))
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,10 +51,33 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
     return tour.price * totalParticipants;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
-    setSubmitted(true);
+    setError('');
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xzzgpwnk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          totalPrice: calculateTotal(),
+          tourName: tour.title,
+          tourId: tour.id
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError('Failed to submit booking. Please try again.');
+      }
+    } catch (err) {
+      console.error('Booking submission error:', err);
+      setError('An error occurred. Please try again later.');
+    }
   };
 
   if (submitted) {
@@ -83,6 +109,11 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <h3 className="text-xl font-bold text-amber-600 mb-4">Book Your Adventure</h3>
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         {/* Tour date, adults, children */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

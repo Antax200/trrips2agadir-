@@ -39,8 +39,8 @@ const FAQs: React.FC = () => {
       <div className="relative h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
-            src="Public/fa3-03.jpg" 
-            alt="Frequently Asked Questions" 
+            src="https://i.ibb.co/391YqVtF/fa3-03.jpg" 
+            alt="FAQs Cover" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-tealbrand-900/60"></div>

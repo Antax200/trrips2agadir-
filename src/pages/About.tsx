@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Container from '../components/ui/Container';
-import { team } from '../data/team';
 
 const About: React.FC = () => {
   useEffect(() => {
@@ -15,8 +14,8 @@ const About: React.FC = () => {
       <div className="relative h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
-            src="Public/VV TRIPS-02.jpg" 
-            alt="About Trips 2 Agadir" 
+            src="https://i.ibb.co/ccThTSB4/VV-TRIPS-02.jpg" 
+            alt="About Us Cover" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-tealbrand-900/60"></div>
@@ -59,8 +58,8 @@ const About: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <img 
-                src="Public/abstrcat-04.png" 
-                alt="Our story" 
+                src="https://i.ibb.co/X9r53kt/abstrcat-04.png" 
+                alt="About Us Abstract" 
                 className="rounded-lg shadow-md w-full h-auto"
               />
             </motion.div>
@@ -101,46 +100,6 @@ const About: React.FC = () => {
               </div>
             </div>
           </motion.div>
-        </section>
-        
-        {/* Meet the Team */}
-        <section className="mb-16">
-          <motion.div
-            className="text-center mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Meet Our Team</h2>
-            <p className="text-gray-700 max-w-3xl mx-auto">
-              Our passionate experts are dedicated to ensuring your quad biking adventure exceeds expectations in every way.
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div 
-                key={member.id}
-                className="bg-white rounded-lg overflow-hidden shadow-md"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-5">
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">{member.name}</h3>
-                  <p className="text-amber-600 font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-700 text-sm">{member.bio}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </section>
         
         {/* Why Choose Us */}

@@ -18,26 +18,53 @@ const Contact: React.FC = () => {
   });
   
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // In a real app, you would submit this to a backend API
-    setSubmitted(true);
+    setError('');
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xzzgpwnk', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          formType: 'contact'
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setError('Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('An error occurred. Please try again later.');
+    }
   };
-  
+
   return (
     <main className="pt-20 pb-16">
       {/* Hero Banner */}
       <div className="relative h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
-            src="Public/CONATCT COVER-02.jpg" 
+            src="https://i.ibb.co/B2Yx2GHH/CONATCT-COVER-02.jpg" 
             alt="Contact Trips 2 Agadir" 
             className="w-full h-full object-cover"
           />
@@ -77,6 +104,11 @@ const Contact: React.FC = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+                    {error}
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-gray-700 mb-2">Your Name</label>
@@ -175,8 +207,8 @@ const Contact: React.FC = () => {
                   <Mail className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-medium mb-1">Email</h3>
-                    <p className="text-tealbrand-100">info@trips2agadir.com</p>
-                    <p className="text-tealbrand-100">bookings@trips2agadir.com</p>
+                    <p className="text-tealbrand-100">contact@trips2agadir.com</p>
+                    <p className="text-tealbrand-100">trips2agadir@hotmail.com</p>
                   </div>
                 </div>
                 
@@ -194,7 +226,7 @@ const Contact: React.FC = () => {
             <div className="bg-gray-50 rounded-lg p-8">
               <h3 className="text-xl font-bold text-gray-800 mb-4">Quick Response Promise</h3>
               <p className="text-gray-700 mb-4">
-                We're committed to providing you with prompt assistance. Our typical response time is within 24 hours.
+                We're committed to providing you with prompt assistance. Our typical response time as soon as possible.
               </p>
               <p className="text-gray-700">
                 For urgent inquiries or same-day bookings, please call us directly for immediate assistance.
@@ -208,18 +240,14 @@ const Contact: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Find Us</h2>
           <div className="h-96 bg-gray-200 rounded-lg overflow-hidden">
             <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110098.31950214875!2d-9.660146003238005!3d30.419869165265197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b6e9daad1cc9%3A0xbcf8d0b78bf48474!2sAgadir%2080000!5e0!3m2!1sfr!2sma!4v1747649525039!5m2!1sfr!2sma"
-      width="100%"
-      height="100%"
-      style={{ border: 0 }}
-      allowFullScreen={true}
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-    ></iframe>
-            
-            <div className="w-full h-full flex items-center justify-center bg-gray-100">
-        
-            </div>
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110098.31950214875!2d-9.660146003238005!3d30.419869165265197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b6e9daad1cc9%3A0xbcf8d0b78bf48474!2sAgadir%2080000!5e0!3m2!1sfr!2sma!4v1747649525039!5m2!1sfr!2sma"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </Container>
