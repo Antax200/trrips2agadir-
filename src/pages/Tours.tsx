@@ -8,7 +8,7 @@ import { Tour } from '../types';
 const Tours: React.FC = () => {
   useEffect(() => {
     // Update document title
-    document.title = 'Quad Biking Tours | Trips 2 Agadir';
+    document.title = 'Trips 2 Agadir | Services '
   }, []);
 
   const [filteredTours, setFilteredTours] = useState<Tour[]>(tours);

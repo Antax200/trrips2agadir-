@@ -46,7 +46,7 @@ const Testimonials: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            What Our Adventurers Say
+            What Our clients Say
           </motion.h2>
           <motion.p 
             className="text-lg text-tealbrand-200 max-w-3xl mx-auto"

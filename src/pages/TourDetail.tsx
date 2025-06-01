@@ -1,44 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { Clock, DollarSign, CheckCircle, Mountain, Compass, Activity } from 'lucide-react';
+import { Clock, DollarSign, CheckCircle } from 'lucide-react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
 import BookingForm from '../components/ui/BookingForm';
-import { tours } from '../types';
-import { testimonials } from '../data/testimonials';
+import { tours, Tour, Review } from '../types';
 import { useBooking } from '../components/ui/BookingContext';
-
-const getCategoryIcon = (category: string) => {
-  switch (category) {
-    case 'Tours':
-      return <Mountain size={16} className="mr-2" />;
-    case 'Excursions':
-      return <Compass size={16} className="mr-2" />;
-    case 'Activites':
-      return <Activity size={16} className="mr-2" />;
-    default:
-      return <Mountain size={16} className="mr-2" />;
-  }
-};
+import ReviewForm from '../components/ui/ReviewForm';
+import ReviewList from '../components/ui/ReviewList';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const TourDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { bookingData } = useBooking();
+  const [reviews] = useState<Review[]>([
+    {
+      id: '1',
+      name: 'John Doe',
+      rating: 5,
+      comment: 'Amazing experience! The tour guide was knowledgeable and friendly.',
+      date: '2024-03-15',
+      tourId: '1',
+      tourTitle: 'Agadir Boat Trip'
+    },
+    {
+      id: '2',
+      name: 'Jane Smith',
+      rating: 4,
+      comment: 'Great tour, beautiful views. Would recommend!',
+      date: '2024-03-10',
+      tourId: '1',
+      tourTitle: 'Agadir Boat Trip'
+    }
+  ]);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
-  const [newReview, setNewReview] = useState({
-    rating: 0,
-    text: '',
-    name: '',
-    email: ''
-  });
-  const [hoveredRating, setHoveredRating] = useState(0);
 
-  const tour = tours.find(t => t.slug === slug);
-  const tourTestimonials = testimonials.filter(t => t.tourName === tour?.title);
+  const tour = tours.find((t: Tour) => t.slug === slug);
 
   const gallerySettings = {
     dots: true,
@@ -47,31 +48,33 @@ const TourDetail: React.FC = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'Tours':
+        return '🏖️';
+      case 'Excursions':
+        return '🚗';
+      case 'Activites':
+        return '🎯';
+      default:
+        return '📍';
+    }
   };
 
   useEffect(() => {
     if (tour) {
       document.title = `${tour.title} | Trips 2 Agadir`;
     }
-
-    if (window.location.hash === '#booking') {
-      const bookingSection = document.getElementById('booking');
-      if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
   }, [tour]);
 
   if (!tour) {
     return (
-      <Container className="pt-28 pb-16 text-center">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Tour Not Found</h1>
-        <p className="text-gray-600 mb-6">The tour you're looking for doesn't exist or has been removed.</p>
-        <Link to="/tours">
-          <Button variant="primary">View All Tours</Button>
-        </Link>
-      </Container>
+      <div className="min-h-screen pt-20 flex items-center justify-center">
+        <p className="text-xl text-gray-600">Tour not found</p>
+      </div>
     );
   }
 
@@ -211,137 +214,32 @@ const TourDetail: React.FC = () => {
 
               {activeTab === 'reviews' && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Customer Reviews</h2>
-                  
-                  {/* Review Submission Form */}
-                  <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">Write a Review</h3>
-                    <form onSubmit={(e) => {
-                      e.preventDefault();
-                      // Here you would typically send the review to your backend
-                      console.log('New review:', newReview);
-                      // Reset form
-                      setNewReview({
-                        rating: 0,
-                        text: '',
-                        name: '',
-                        email: ''
-                      });
-                    }}>
-                      <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Your Rating</label>
-                        <div className="flex gap-1">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <button
-                              key={star}
-                              type="button"
-                              onMouseEnter={() => setHoveredRating(star)}
-                              onMouseLeave={() => setHoveredRating(0)}
-                              onClick={() => setNewReview(prev => ({ ...prev, rating: star }))}
-                              className="focus:outline-none"
-                            >
-                              <Star
-                                size={24}
-                                className={`${
-                                  star <= (hoveredRating || newReview.rating)
-                                    ? 'text-amber-500 fill-amber-500'
-                                    : 'text-gray-300'
-                                }`}
-                              />
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Your Review</label>
-                        <textarea
-                          value={newReview.text}
-                          onChange={(e) => setNewReview(prev => ({ ...prev, text: e.target.value }))}
-                          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                          rows={4}
-                          required
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <label className="block text-gray-700 mb-2">Your Name</label>
-                          <input
-                            type="text"
-                            value={newReview.name}
-                            onChange={(e) => setNewReview(prev => ({ ...prev, name: e.target.value }))}
-                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-gray-700 mb-2">Your Email</label>
-                          <input
-                            type="email"
-                            value={newReview.email}
-                            onChange={(e) => setNewReview(prev => ({ ...prev, email: e.target.value }))}
-                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <Button type="submit" variant="secondary">
-                        Submit Review
-                      </Button>
-                    </form>
+                  <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-3xl font-bold text-gray-800">Customer Reviews</h2>
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowReviewForm(!showReviewForm)}
+                    >
+                      {showReviewForm ? 'Cancel Review' : 'Write a Review'}
+                    </Button>
                   </div>
 
-                  {/* Existing Reviews */}
-                  {tourTestimonials.length > 0 ? (
-                    <div className="space-y-6">
-                      {tourTestimonials.map((testimonial) => (
-                        <div key={testimonial.id} className="bg-gray-50 p-6 rounded-lg">
-                          <div className="flex mb-4">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <Star
-                                key={i}
-                                size={18}
-                                className={`${
-                                  i < testimonial.rating
-                                    ? 'text-amber-500 fill-amber-500'
-                                    : 'text-gray-300'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <p className="text-gray-700 mb-4 italic whitespace-pre-line">"{testimonial.text}"</p>
-                          <div className="flex items-center">
-                            {testimonial.avatar.length === 2 ? (
-                              <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-semibold text-lg mr-4">
-                                {testimonial.avatar}
-                              </div>
-                            ) : (
-                              <img
-                                src={testimonial.avatar}
-                                alt={testimonial.name}
-                                className="w-10 h-10 rounded-full object-cover mr-4"
-                              />
-                            )}
-                            <div>
-                              <h4 className="font-medium text-gray-900">{testimonial.name}</h4>
-                              <p className="text-sm text-gray-500">
-                                {new Date(testimonial.date).toLocaleDateString('en-US', {
-                                  year: 'numeric',
-                                  month: 'long',
-                                  day: 'numeric',
-                                })}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                  {showReviewForm && (
+                    <div className="mb-8">
+                      <ReviewForm
+                        tourId={tour.id}
+                        tourTitle={tour.title}
+                        onReviewSubmitted={() => setShowReviewForm(false)}
+                      />
                     </div>
+                  )}
+                  
+                  {reviews.length > 0 ? (
+                    <ReviewList reviews={reviews} />
                   ) : (
-                    <p className="text-gray-600">
-                      No reviews yet for this tour. Be the first to leave a review after your adventure!
-                    </p>
+                    <div className="text-center py-8 bg-gray-50 rounded-lg">
+                      <p className="text-gray-600">No reviews yet. Be the first to review this tour!</p>
+                    </div>
                   )}
                 </motion.div>
               )}
@@ -364,22 +262,5 @@ const TourDetail: React.FC = () => {
     </main>
   );
 };
-
-// Star component for reviews
-const Star: React.FC<{ size: number; className: string }> = ({ size, className }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-  </svg>
-);
 
 export default TourDetail;

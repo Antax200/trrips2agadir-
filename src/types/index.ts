@@ -51,6 +51,16 @@ export interface BookingFormData {
   specialRequests?: string;
 }
 
+export interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  comment: string;
+  date: string;
+  tourId: string;
+  tourTitle: string;
+}
+
 export const tours: Tour[] = [
   {
     id: '1',

@@ -78,6 +78,33 @@ const CallToAction: React.FC = () => {
                 </Button>
               </Link>
             </div>
+
+            {/* Payment Methods Section */}
+            <div className="mt-8">
+              <p className="text-sm text-amber-100 mb-3">We Accept:</p>
+              <div className="flex flex-wrap gap-4 items-center">
+                <img 
+                  src="https://i.ibb.co/99gs95yR/Old-Visa-Logo-svg.png" 
+                  alt="Visa" 
+                  className="h-12"
+                />
+                <img 
+                  src="https://i.ibb.co/4wjJxMT0/mastercard22.jpg" 
+                  alt="Mastercard" 
+                  className="h-12"
+                />
+                <img 
+                  src="https://i.ibb.co/TD1f4kDx/paypal-maroc.jpg" 
+                  alt="PayPal" 
+                  className="h-12"
+                />
+                <img 
+                  src="https://i.ibb.co/XrC4zc6C/cash-money.jpg" 
+                  alt="Cash" 
+                  className="h-12"
+                />
+              </div>
+            </div>
           </motion.div>
           
           <motion.div
@@ -148,7 +175,7 @@ const CallToAction: React.FC = () => {
                     <option value="Paradise Valley And Immouzzer From Agadir">Paradise Valley And Immouzzer From Agadir</option>
                   </select>
                 </div>
-                <Button variant="primary" type="submit" fullWidth>
+                <Button variant="secondary" type="submit" fullWidth>
                   Send Inquiry
                 </Button>
               </form>

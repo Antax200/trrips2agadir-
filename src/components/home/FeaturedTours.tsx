@@ -7,8 +7,12 @@ import Button from '../ui/Button';
 import { tours } from '../../types';
 
 const FeaturedTours: React.FC = () => {
-  // Get the first 3 tours for the featured section
-  const featuredTours = tours.slice(0, 3);
+  // Get the first 3 tours but replace Quad Bike Agadir with Paradise Valley
+  const paradiseValleyTour = tours.find(tour => tour.title === 'Paradise Valley And Immouzzer From Agadir');
+  const otherTours = tours
+    .filter(tour => tour.title !== 'Quad Bike Agadir' && tour.title !== 'Paradise Valley And Immouzzer From Agadir')
+    .slice(0, 2);
+  const featuredTours = paradiseValleyTour ? [...otherTours, paradiseValleyTour] : otherTours;
   
   return (
     <section className="py-16 md:py-24 bg-yellow-50">
@@ -21,7 +25,7 @@ const FeaturedTours: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Popular Tours, Excursions,Activites 
+            Our Popular Services
           </motion.h2>
           <motion.p 
             className="text-lg text-gray-600 max-w-3xl mx-auto"

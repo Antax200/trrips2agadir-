@@ -8,7 +8,7 @@ import CallToAction from '../components/home/CallToAction';
 const Home: React.FC = () => {
   useEffect(() => {
     // Update document title
-    document.title = 'Trips 2 Agadir | Quad Biking Adventures in Morocco';
+    document.title = 'Trips 2 Agadir | Home '
   }, []);
 
   return (
