@@ -1,0 +1,42 @@
+{
+  "common": {
+    "bookNow": "Book Now",
+    "viewDetails": "View Details",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "price": "Price",
+    "duration": "Duration",
+    "category": "category"
+  },
+  "home": {
+    "hero": {
+      "title": "Experience the Thrill of Agadir on a Quad Bike!",
+      "subtitle": "Discover breathtaking landscapes, from golden sand dunes to coastal paths and Berber villages, on our guided quad biking tours."
+    },
+    "intro": {
+      "title": "Discover Agadir on Two Wheels",
+      "description": "Trips 2 Agadir offers exhilarating quad biking adventures that combine the perfect balance of adrenaline, breathtaking scenery, and cultural immersion."
+    }
+  },
+  "booking": {
+    "title": "Book Your Adventure",
+    "form": {
+      "date": "Tour Date",
+      "participants": "Number of Participants",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "specialRequests": "Special Requests (Optional)",
+      "submit": "Complete Booking"
+    },
+    "payment": {
+      "title": "Payment Details",
+      "total": "Total Amount",
+      "secure": "Secure payment powered by Stripe",
+      "processing": "Processing your payment...",
+      "success": "Booking Successful!",
+      "error": "Payment failed. Please try again."
+    }
+  }
+}

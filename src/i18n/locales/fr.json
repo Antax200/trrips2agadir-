@@ -1,0 +1,42 @@
+{
+  "common": {
+    "bookNow": "Réserver",
+    "viewDetails": "Voir les détails",
+    "learnMore": "En savoir plus",
+    "contactUs": "Nous contacter",
+    "price": "Prix",
+    "duration": "Durée",
+    "category": "Difficulté"
+  },
+  "home": {
+    "hero": {
+      "title": "Vivez l'aventure à Agadir en Quad !",
+      "subtitle": "Découvrez des paysages à couper le souffle, des dunes dorées aux sentiers côtiers et villages berbères, lors de nos excursions guidées en quad."
+    },
+    "intro": {
+      "title": "Découvrez Agadir sur deux roues",
+      "description": "Trips 2 Agadir propose des aventures palpitantes en quad qui combinent parfaitement adrénaline, paysages spectaculaires et immersion culturelle."
+    }
+  },
+  "booking": {
+    "title": "Réservez votre aventure",
+    "form": {
+      "date": "Date de l'excursion",
+      "participants": "Nombre de participants",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Numéro de téléphone",
+      "specialRequests": "Demandes spéciales (Optionnel)",
+      "submit": "Finaliser la réservation"
+    },
+    "payment": {
+      "title": "Détails du paiement",
+      "total": "Montant total",
+      "secure": "Paiement sécurisé par Stripe",
+      "processing": "Traitement de votre paiement...",
+      "success": "Réservation réussie !",
+      "error": "Le paiement a échoué. Veuillez réessayer."
+    }
+  }
+}
