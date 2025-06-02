@@ -64,7 +64,7 @@ const Contact: React.FC = () => {
       <div className="relative h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://i.ibb.co/B2Yx2GHH/CONATCT-COVER-02.jpg" 
+            src="https://i.ibb.co/B2Yx2GH/contact-cover.jpg" 
             alt="Contact Trips 2 Agadir" 
             className="w-full h-full object-cover"
           />

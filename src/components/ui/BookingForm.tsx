@@ -45,15 +45,21 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
   };
 
   const calculateTotal = () => {
-    const adults = Number(formData.adults) || 0;
-    const children = Number(formData.children) || 0;
+    const adults = Math.max(0, Number(formData.adults) || 0);
+    const children = Math.max(0, Number(formData.children) || 0);
     const totalParticipants = adults + children;
-    return tour.price * totalParticipants;
+    const total = tour.price * totalParticipants;
+    return Math.max(0, total);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    
+    if (calculateTotal() <= 0) {
+      setError('Please select at least one participant.');
+      return;
+    }
     
     try {
       const response = await fetch('https://formspree.io/f/xzzgpwnk', {
@@ -65,7 +71,8 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
           ...formData,
           totalPrice: calculateTotal(),
           tourName: tour.title,
-          tourId: tour.id
+          tourId: tour.id,
+          formType: 'booking'
         }),
       });
 
