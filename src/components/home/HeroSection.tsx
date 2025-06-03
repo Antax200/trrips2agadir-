@@ -82,7 +82,7 @@ const HeroSection: React.FC = () => {
               className="w-full md:w-auto"
             >
               <Button size="lg" variant="secondary" className="w-full md:w-auto text-base md:text-lg py-3 md:py-4 px-6 md:px-8">
-                Explore Tours
+                Explore Services
               </Button>
             </button>
             <Link to="/contact#booking" className="w-full md:w-auto">

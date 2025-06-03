@@ -66,17 +66,19 @@ const FeaturedTours: React.FC = () => {
           arrows: true,
           nextArrow: <NextArrow />,
           prevArrow: <PrevArrow />,
+          centerMode: true,
+          centerPadding: '0px',
         }
       }
     ]
   };
   
   return (
-    <section className="py-12 md:py-24 bg-yellow-50">
+    <section className="py-20 md:py-24 bg-yellow-50">
       <Container>
-        <div className="text-center mb-8 md:mb-12">
+        <div className="text-center mb-12 md:mb-12">
           <motion.h2 
-            className="text-2xl md:text-4xl font-bold text-amber-800 mb-3 md:mb-4"
+            className="text-4xl md:text-4xl font-bold text-amber-800 mb-5 md:mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -85,7 +87,7 @@ const FeaturedTours: React.FC = () => {
             Our Popular Services
           </motion.h2>
           <motion.p 
-            className="text-sm md:text-lg text-gray-600 max-w-3xl mx-auto px-4 md:px-0"
+            className="text-lg md:text-lg text-gray-600 max-w-3xl mx-auto px-8 md:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -95,16 +97,16 @@ const FeaturedTours: React.FC = () => {
           </motion.p>
         </div>
         
-        <div className="px-8 md:px-12 relative">
+        <div className="px-0 md:px-12 relative">
           <Slider {...settings}>
             {featuredTours.map((tour, index) => (
-              <div key={tour.id} className="px-2">
+              <div key={tour.id} className="px-2 md:px-2">
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 * index }}
-                  className="transform hover:scale-[1.02] transition-transform duration-300"
+                  className="transform hover:scale-[1.02] transition-transform duration-300 mx-2 md:mx-0"
                 >
                   <TourCard tour={tour} />
                 </motion.div>
@@ -113,14 +115,14 @@ const FeaturedTours: React.FC = () => {
           </Slider>
         </div>
         
-        <div className="text-center mt-8 md:mt-12">
+        <div className="text-center mt-12 md:mt-12">
           <Link to="/tours">
             <Button 
               variant="secondary" 
               size="lg"
-              className="w-full md:w-auto text-base md:text-lg py-3 md:py-4 px-6 md:px-8"
+              className="w-full md:w-auto text-lg md:text-lg py-5 md:py-4 px-10 md:px-8"
             >
-              View All Tours
+              View All Services
             </Button>
           </Link>
         </div>

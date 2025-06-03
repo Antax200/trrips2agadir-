@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
                   <MapPin className="w-6 h-6 text-amber-500 mr-3 flex-shrink-0" />
                   <div>
                     <h3 className="font-medium mb-1">Address</h3>
-                    <p className="text-tealbrand-100">123 Adventure Road<br />Agadir, Morocco</p>
+                    <p className="text-tealbrand-100"><br />Agadir, Morocco</p>
                   </div>
                 </div>
                 
@@ -208,7 +208,7 @@ const Contact: React.FC = () => {
                   <div>
                     <h3 className="font-medium mb-1">Email</h3>
                     <p className="text-tealbrand-100">contact@trips2agadir.com</p>
-                    <p className="text-tealbrand-100">trips2agadir@hotmail.com</p>
+                    <p className="text-tealbrand-100">trips2agadirr@hotmail.com</p>
                   </div>
                 </div>
                 
