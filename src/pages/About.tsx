@@ -11,7 +11,7 @@ const About: React.FC = () => {
   return (
     <main className="pt-20 pb-16">
       {/* Hero Banner */}
-      <div className="relative h-80 bg-gray-900 mb-12">
+      <div className="relative h-32 md:h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://i.ibb.co/ccThTSB4/VV-TRIPS-02.jpg" 
@@ -22,8 +22,8 @@ const About: React.FC = () => {
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-amber-600 mb-4">About Trips 2 Agadir</h1>
-            <p className="text-xl text-amber-600/90 max-w-2xl">Your gateway to unforgettable Moroccan adventures</p>
+            <h1 className="text-lg md:text-5xl font-bold text-amber-600 mb-1 md:mb-4">About Trips 2 Agadir</h1>
+            <p className="text-xs md:text-xl text-amber-600/90 max-w-2xl">Your gateway to unforgettable Moroccan adventures</p>
           </div>
         </div>
       </div>

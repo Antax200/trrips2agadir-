@@ -66,7 +66,7 @@ const Tours: React.FC = () => {
   return (
     <main className="pt-20 pb-16">
       {/* Hero Banner */}
-      <div className="relative h-80 bg-gray-900 mb-12">
+      <div className="relative h-24 md:h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://i.ibb.co/M5MQB64K/cover-services-02.jpg" 
@@ -77,17 +77,17 @@ const Tours: React.FC = () => {
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Discover Our Services </h1>
-            <p className="text-xl text-white/90 max-w-2xl">Discover the perfect adventure for your style </p>
+            <h1 className="text-base md:text-5xl font-bold text-white mb-0.5 md:mb-4">Discover Our Services</h1>
+            <p className="text-[10px] md:text-xl text-white/90 max-w-2xl">Discover the perfect adventure for your style</p>
           </div>
         </div>
       </div>
       
       <Container>
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">Filter Tours</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6 md:mb-8">
+          <h2 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4">Filter Tours</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             {/* Difficulty Filter */}
             <div>
               <label className="block text-gray-700 mb-2">category</label>
@@ -137,22 +137,23 @@ const Tours: React.FC = () => {
         
         {/* Tour Listings */}
         {filteredTours.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {filteredTours.map((tour, index) => (
               <motion.div 
                 key={tour.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="transform scale-[0.98] md:scale-100"
               >
                 <TourCard tour={tour} />
               </motion.div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <h3 className="text-xl font-medium text-gray-800 mb-2">No tours match your filters</h3>
-            <p className="text-gray-600">Try adjusting your filter criteria to see more options.</p>
+          <div className="text-center py-8 md:py-12">
+            <h3 className="text-lg md:text-xl font-medium text-gray-800 mb-2">No tours match your filters</h3>
+            <p className="text-sm md:text-base text-gray-600">Try adjusting your filter criteria to see more options.</p>
           </div>
         )}
       </Container>

@@ -55,14 +55,14 @@ const TourCard: React.FC<TourCardProps> = ({ tour }) => {
 
   return (
     <motion.div 
-      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+      className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform scale-[0.98] md:scale-100"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
       whileHover={{ y: -5 }}
     >
       <div 
-        className="relative h-48 md:h-64 overflow-hidden group"
+        className="relative h-36 md:h-64 overflow-hidden group"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
@@ -75,7 +75,7 @@ const TourCard: React.FC<TourCardProps> = ({ tour }) => {
         >
           <img 
             src={tour.imageUrl} 
-            alt={tour.title}
+            alt={tour.title} 
             className="w-1/2 h-full object-cover flex-shrink-0"
           />
           {tour.gallery.length > 0 && (
@@ -86,41 +86,42 @@ const TourCard: React.FC<TourCardProps> = ({ tour }) => {
             />
           )}
         </div>
-        <div className={`absolute top-0 right-0 ${getCategoryColor(tour.category)} text-white py-1 px-3 m-2 rounded-full text-sm font-medium flex items-center gap-1`}>
+        <div className={`absolute top-0 right-0 ${getCategoryColor(tour.category)} text-white py-1 px-2 md:px-3 m-2 rounded-full text-xs md:text-sm font-medium flex items-center gap-1`}>
           {getCategoryIcon(tour.category)}
           <span>{tour.category}</span>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      
-      <div className="p-6">
+
+      <div className="p-4 md:p-6">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-bold text-gray-800 line-clamp-1 flex-1">{tour.title}</h3>
-          <div className="ml-4 bg-amber-500 text-white px-3 py-1 rounded-lg font-bold text-lg">
+          <h3 className="text-base md:text-xl font-bold text-gray-800 line-clamp-1 flex-1">{tour.title}</h3>
+          <div className="ml-4 bg-amber-500 text-white px-2 md:px-3 py-1 rounded-lg font-bold text-sm md:text-lg">
             ${tour.price}
           </div>
         </div>
-        <p className="text-gray-600 mb-4 line-clamp-2 min-h-[3rem]">{tour.shortDescription}</p>
-        
-        <div className="flex flex-wrap gap-3 mb-6">
-          <div className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-            <Clock size={16} className="mr-1" />
-            <span className="text-sm font-medium">{tour.duration}</span>
+
+        <p className="text-xs md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2 min-h-[2.5rem] md:min-h-[3rem]">{tour.shortDescription}</p>
+
+        <div className="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6">
+          <div className="flex items-center text-blue-600 bg-blue-50 px-2 md:px-3 py-1 rounded-full">
+            <Clock size={14} className="mr-1 md:w-4 md:h-4" />
+            <span className="text-xs md:text-sm font-medium">{tour.duration}</span>
           </div>
-          <div className={`flex items-center ${getRatingColor(tour.rating)} px-3 py-1 rounded-full`}>
-            <Star size={16} className="mr-1 fill-current" />
-            <span className="text-sm font-medium">{tour.rating.toFixed(1)}</span>
+          <div className={`flex items-center ${getRatingColor(tour.rating)} px-2 md:px-3 py-1 rounded-full`}>
+            <Star size={14} className="mr-1 md:w-4 md:h-4 fill-current" />
+            <span className="text-xs md:text-sm font-medium">{tour.rating.toFixed(1)}</span>
           </div>
         </div>
-        
-        <div className="flex justify-between items-center gap-4">
+
+        <div className="flex justify-between items-center gap-2 md:gap-4">
           <Link to={`/tours/${tour.slug}`} className="flex-1">
-            <Button variant="outline" size="sm" className="w-full">
+            <Button variant="outline" size="sm" className="w-full text-xs md:text-sm py-1.5 md:py-2">
               View Details
             </Button>
           </Link>
           <Link to={`/tours/${tour.slug}#booking`} className="flex-1">
-            <Button variant="secondary" size="sm" className="w-full">
+            <Button variant="secondary" size="sm" className="w-full text-xs md:text-sm py-1.5 md:py-2">
               Book Now
             </Button>
           </Link>

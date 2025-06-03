@@ -197,17 +197,17 @@ const TourDetail: React.FC = () => {
                   <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">Tour Gallery</h2>
                   <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6">Preview the breathtaking sights you'll experience on this tour.</p>
                   <div className="relative -mx-4 md:mx-0">
-                    <Slider {...gallerySettings}>
-                      {tour.gallery.map((image, index) => (
+                  <Slider {...gallerySettings}>
+                    {tour.gallery.map((image, index) => (
                         <div key={index} className="outline-none px-1 md:px-0">
-                          <img
-                            src={image}
-                            alt={`${tour.title} - Image ${index + 1}`}
+                        <img
+                          src={image}
+                          alt={`${tour.title} - Image ${index + 1}`}
                             className="w-full h-64 md:h-96 object-cover rounded-lg"
-                          />
-                        </div>
-                      ))}
-                    </Slider>
+                        />
+                      </div>
+                    ))}
+                  </Slider>
                   </div>
                 </motion.div>
               )}
@@ -222,7 +222,7 @@ const TourDetail: React.FC = () => {
                     >
                       {showReviewForm ? 'Cancel Review' : 'Write a Review'}
                     </Button>
-                  </div>
+                          </div>
 
                   {showReviewForm && (
                     <div className="mb-8">

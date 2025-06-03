@@ -61,7 +61,7 @@ const Contact: React.FC = () => {
   return (
     <main className="pt-20 pb-16">
       {/* Hero Banner */}
-      <div className="relative h-80 bg-gray-900 mb-12">
+      <div className="relative h-32 md:h-80 bg-gray-900 mb-12">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://i.ibb.co/PzCxY5Cn/contact.jpg" 
@@ -72,8 +72,8 @@ const Contact: React.FC = () => {
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
-            <p className="text-xl text-white/90 max-w-2xl">Have questions? We're here to help you plan your perfect adventure.</p>
+            <h1 className="text-lg md:text-5xl font-bold text-white mb-1 md:mb-4">Contact Us</h1>
+            <p className="text-xs md:text-xl text-white/90 max-w-2xl">Have questions? We're here to help you plan your perfect adventure.</p>
           </div>
         </div>
       </div>

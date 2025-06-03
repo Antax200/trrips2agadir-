@@ -55,8 +55,9 @@ const CallToAction: React.FC = () => {
     <section className="py-16 md:py-24 bg-amber-600 text-white">
       <Container>
         <div className="flex flex-col md:flex-row items-center justify-between">
+          {/* Adventure Section - Hidden on Mobile */}
           <motion.div 
-            className="max-w-2xl mb-8 md:mb-0"
+            className="hidden md:block max-w-2xl mb-8 md:mb-0"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -79,34 +80,35 @@ const CallToAction: React.FC = () => {
               </Link>
             </div>
 
-            {/* Payment Methods Section */}
-            <div className="mt-8">
-              <p className="text-sm text-amber-100 mb-3">We Accept:</p>
-              <div className="flex flex-wrap gap-4 items-center">
+            {/* Payment Methods Section - Desktop Only */}
+            <div className="hidden md:block mt-8">
+              <p className="text-base font-bold text-amber-100 mb-4">We Accept</p>
+              <div className="flex flex-wrap gap-6 items-center">
                 <img 
                   src="https://i.ibb.co/dJBycR2Q/visaa.jpg" 
                   alt="Visa" 
-                  className="h-12"
+                  className="h-8 md:h-10"
                 />
                 <img 
                   src="https://i.ibb.co/DPzygV7H/mm.jpg" 
                   alt="Mastercard" 
-                  className="h-12"
+                  className="h-8 md:h-10"
                 />
                 <img 
                   src="https://i.ibb.co/7F0LZjF/paypal.jpg" 
                   alt="PayPal" 
-                  className="h-12"
+                  className="h-8 md:h-10"
                 />
                 <img 
                   src="https://i.ibb.co/VcBNpG43/cash-money.jpg" 
                   alt="Cash" 
-                  className="h-12"
+                  className="h-8 md:h-10"
                 />
               </div>
             </div>
           </motion.div>
           
+          {/* Quick Inquiry Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -181,6 +183,33 @@ const CallToAction: React.FC = () => {
               </form>
             )}
           </motion.div>
+        </div>
+
+        {/* Payment Methods Section - Mobile Only */}
+        <div className="md:hidden mt-8 text-center">
+          <p className="text-base font-bold text-amber-100 mb-4">We Accept</p>
+          <div className="flex flex-wrap gap-6 items-center justify-center">
+            <img 
+              src="https://i.ibb.co/dJBycR2Q/visaa.jpg" 
+              alt="Visa" 
+              className="h-8"
+            />
+            <img 
+              src="https://i.ibb.co/DPzygV7H/mm.jpg" 
+              alt="Mastercard" 
+              className="h-8"
+            />
+            <img 
+              src="https://i.ibb.co/7F0LZjF/paypal.jpg" 
+              alt="PayPal" 
+              className="h-8"
+            />
+            <img 
+              src="https://i.ibb.co/VcBNpG43/cash-money.jpg" 
+              alt="Cash" 
+              className="h-8"
+            />
+          </div>
         </div>
       </Container>
     </section>

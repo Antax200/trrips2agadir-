@@ -34,8 +34,8 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Quick Links - Hidden on Mobile */}
+          <div className="hidden md:block">
             <h3 className="text-lg font-bold mb-4 border-b border-tealbrand-700 pb-2">Quick Links</h3>
             <ul className="space-y-2">
               {['/', '/tours', '/about', '/contact', '/faqs'].map((path, i) => {
@@ -51,8 +51,8 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Popular Tours */}
-          <div>
+          {/* Popular Tours - Hidden on Mobile */}
+          <div className="hidden md:block">
             <h3 className="text-lg font-bold mb-4 border-b border-tealbrand-700 pb-2">Popular Tours</h3>
             <ul className="space-y-2">
               {[

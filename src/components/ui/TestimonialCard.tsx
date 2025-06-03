@@ -16,7 +16,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
     month: 'long',
     day: 'numeric'
   });
-
+  
   // Check if avatar is initials (2 characters) or an image URL
   const isInitials = avatar.length === 2;
   
@@ -45,11 +45,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
             {avatar}
           </div>
         ) : (
-          <img 
-            src={avatar} 
-            alt={name} 
-            className="w-12 h-12 rounded-full object-cover mr-4"
-          />
+        <img 
+          src={avatar} 
+          alt={name} 
+          className="w-12 h-12 rounded-full object-cover mr-4"
+        />
         )}
         <div>
           <h4 className="font-medium text-gray-900">{name}</h4>

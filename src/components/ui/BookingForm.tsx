@@ -77,7 +77,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ tour, prefill }) => {
       });
 
       if (response.ok) {
-        setSubmitted(true);
+    setSubmitted(true);
       } else {
         setError('Failed to submit booking. Please try again.');
       }
