@@ -84,22 +84,22 @@ const CallToAction: React.FC = () => {
               <p className="text-sm text-amber-100 mb-3">We Accept:</p>
               <div className="flex flex-wrap gap-4 items-center">
                 <img 
-                  src="/visaa.jpe" 
+                  src="https://i.ibb.co/dJBycR2Q/visaa.jpg" 
                   alt="Visa" 
                   className="h-12"
                 />
                 <img 
-                  src="/mm.jpe" 
+                  src="https://i.ibb.co/DPzygV7H/mm.jpg" 
                   alt="Mastercard" 
                   className="h-12"
                 />
                 <img 
-                  src="/paypal.jpe" 
+                  src="https://i.ibb.co/7F0LZjF/paypal.jpg" 
                   alt="PayPal" 
                   className="h-12"
                 />
                 <img 
-                  src="/cash money.jpe" 
+                  src="https://i.ibb.co/VcBNpG43/cash-money.jpg" 
                   alt="Cash" 
                   className="h-12"
                 />
